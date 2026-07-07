@@ -3,8 +3,16 @@ const menuButton = document.querySelector("[data-menu-button]");
 const nav = document.querySelector("[data-nav]");
 const navLinks = [...document.querySelectorAll(".site-nav a")];
 const themeToggle = document.querySelector("[data-theme-toggle]");
+const scrollHero = document.querySelector("[data-scroll-hero]");
+const scrollPanels = [...document.querySelectorAll("[data-scroll-panel]")];
 const joinForm = document.querySelector("[data-join-form]");
 const formNote = document.querySelector("[data-form-note]");
+const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+let scrollMotionQueued = false;
+
+function clamp(value, min, max) {
+  return Math.min(Math.max(value, min), max);
+}
 
 function getSavedTheme() {
   try {
@@ -31,6 +39,44 @@ function setTheme(theme) {
 
 function setHeaderState() {
   header.classList.toggle("scrolled", window.scrollY > 16);
+}
+
+function resetScrollMotion() {
+  document.documentElement.style.removeProperty("--hero-bg-shift");
+  document.documentElement.style.removeProperty("--hero-content-shift");
+  scrollPanels.forEach((panel) => panel.style.setProperty("--scroll-shift", "0px"));
+}
+
+function updateScrollMotion() {
+  if (reducedMotionQuery.matches) {
+    resetScrollMotion();
+    return;
+  }
+
+  const heroHeight = scrollHero?.offsetHeight || 1;
+  const heroProgress = clamp(window.scrollY / heroHeight, 0, 1);
+
+  document.documentElement.style.setProperty("--hero-bg-shift", `${Math.round(heroProgress * 34)}px`);
+  document.documentElement.style.setProperty("--hero-content-shift", `${Math.round(heroProgress * 16)}px`);
+
+  const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+  scrollPanels.forEach((panel) => {
+    const rect = panel.getBoundingClientRect();
+    const panelCenter = rect.top + rect.height / 2;
+    const distanceFromCenter = panelCenter / viewportHeight - 0.5;
+    const shift = clamp(distanceFromCenter * -24, -18, 18);
+    panel.style.setProperty("--scroll-shift", `${shift.toFixed(1)}px`);
+  });
+}
+
+function requestScrollMotionUpdate() {
+  if (scrollMotionQueued) return;
+  scrollMotionQueued = true;
+
+  requestAnimationFrame(() => {
+    scrollMotionQueued = false;
+    updateScrollMotion();
+  });
 }
 
 function toggleMenu(forceOpen) {
@@ -83,6 +129,14 @@ function observeReveals() {
 menuButton.addEventListener("click", () => toggleMenu());
 navLinks.forEach((link) => link.addEventListener("click", () => toggleMenu(false)));
 window.addEventListener("scroll", setHeaderState, { passive: true });
+window.addEventListener("scroll", requestScrollMotionUpdate, { passive: true });
+window.addEventListener("resize", requestScrollMotionUpdate);
+
+if (typeof reducedMotionQuery.addEventListener === "function") {
+  reducedMotionQuery.addEventListener("change", requestScrollMotionUpdate);
+} else {
+  reducedMotionQuery.addListener(requestScrollMotionUpdate);
+}
 
 themeToggle.addEventListener("click", () => {
   const nextTheme = document.body.dataset.theme === "night" ? "day" : "night";
@@ -100,5 +154,6 @@ joinForm.addEventListener("submit", (event) => {
 
 setTheme(getSavedTheme() === "night" ? "night" : "day");
 setHeaderState();
+updateScrollMotion();
 observeSections();
 observeReveals();

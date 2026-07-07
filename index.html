@@ -11,12 +11,78 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <svg class="icon-sprite" aria-hidden="true" focusable="false">
+      <symbol id="icon-arrow-up" viewBox="0 0 24 24">
+        <path d="m18 15-6-6-6 6" />
+      </symbol>
+      <symbol id="icon-calendar" viewBox="0 0 24 24">
+        <path d="M8 2v4" />
+        <path d="M16 2v4" />
+        <rect width="18" height="18" x="3" y="4" rx="2" />
+        <path d="M3 10h18" />
+      </symbol>
+      <symbol id="icon-globe" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10" />
+        <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+        <path d="M2 12h20" />
+      </symbol>
+      <symbol id="icon-instagram" viewBox="0 0 24 24">
+        <rect width="20" height="20" x="2" y="2" rx="5" />
+        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37Z" />
+        <path d="M17.5 6.5h.01" />
+      </symbol>
+      <symbol id="icon-link" viewBox="0 0 24 24">
+        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+      </symbol>
+      <symbol id="icon-list" viewBox="0 0 24 24">
+        <path d="M8 6h13" />
+        <path d="M8 12h13" />
+        <path d="M8 18h13" />
+        <path d="M3 6h.01" />
+        <path d="M3 12h.01" />
+        <path d="M3 18h.01" />
+      </symbol>
+      <symbol id="icon-location" viewBox="0 0 24 24">
+        <path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0Z" />
+        <circle cx="12" cy="10" r="3" />
+      </symbol>
+      <symbol id="icon-mail" viewBox="0 0 24 24">
+        <rect width="20" height="16" x="2" y="4" rx="2" />
+        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+      </symbol>
+      <symbol id="icon-moon" viewBox="0 0 24 24">
+        <path d="M12 3a6 6 0 0 0 9 7.5A9 9 0 1 1 12 3Z" />
+      </symbol>
+      <symbol id="icon-send" viewBox="0 0 24 24">
+        <path d="m22 2-7 20-4-9-9-4Z" />
+        <path d="M22 2 11 13" />
+      </symbol>
+      <symbol id="icon-trophy" viewBox="0 0 24 24">
+        <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" />
+        <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18" />
+        <path d="M4 22h16" />
+        <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22" />
+        <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22" />
+        <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z" />
+      </symbol>
+      <symbol id="icon-user" viewBox="0 0 24 24">
+        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+        <circle cx="12" cy="7" r="4" />
+      </symbol>
+      <symbol id="icon-users" viewBox="0 0 24 24">
+        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+        <circle cx="9" cy="7" r="4" />
+        <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+      </symbol>
+    </svg>
+
     <a class="skip-link" href="#main">Skip to content</a>
 
     <header class="site-header" data-header>
-      <a class="brand" href="#home" aria-label="Home">
-        <img class="brand-logo" src="assets/newlogoupscale.png" alt="" aria-hidden="true" />
-        <span>Munich Tritons</span>
+      <a class="brand" href="#home" aria-label="Munich Tritons home">
+        <img class="brand-wordmark" src="assets/Tritons Logo FT Gern.png" alt="" aria-hidden="true" />
       </a>
 
       <button class="menu-button" type="button" aria-label="Open menu" aria-expanded="false" data-menu-button>
@@ -25,8 +91,14 @@
       </button>
 
       <nav class="site-nav" aria-label="Primary navigation" data-nav>
-        <a href="#details">Details</a>
-        <a href="#contact">Contact</a>
+        <a href="#details">
+          <svg class="icon" aria-hidden="true"><use href="#icon-list"></use></svg>
+          <span>Details</span>
+        </a>
+        <a href="#contact">
+          <svg class="icon" aria-hidden="true"><use href="#icon-mail"></use></svg>
+          <span>Contact</span>
+        </a>
         <button
           class="theme-toggle"
           type="button"
@@ -36,6 +108,7 @@
           data-theme-toggle
         >
           <span class="theme-toggle-track" aria-hidden="true">
+            <svg class="icon theme-icon" aria-hidden="true"><use href="#icon-moon"></use></svg>
             <span class="theme-toggle-thumb"></span>
           </span>
         </button>
@@ -43,64 +116,104 @@
     </header>
 
     <main id="main">
-      <section class="hero section-panel" id="home" aria-label="Water polo player rising from the pool with a ball">
+      <section class="hero section-panel" id="home" aria-label="Water polo player preparing to throw from the pool" data-scroll-hero>
         <div class="hero-overlay"></div>
-        <div class="waterline" aria-hidden="true"></div>
         <div class="hero-content">
-          <img class="hero-logo" src="assets/newlogoupscale.png" alt="" aria-hidden="true" />
+          <h1 class="visually-hidden">Munich Tritons</h1>
+          <img class="hero-wordmark" src="assets/Tritons graphic FT Gern.png" alt="" aria-hidden="true" />
           <p class="eyebrow">Part of FT Gern</p>
-          <h1>Munich Tritons</h1>
           <p class="hero-copy">Water polo as a hobby for those who are willing to put in the effort. We accept new players as well as returning professionals.</p>
           <div class="hero-actions">
-            <a class="button primary" href="#details">View details</a>
-            <a class="button secondary" href="#contact">Send a note</a>
+            <a class="button primary" href="#details">
+              <svg class="icon" aria-hidden="true"><use href="#icon-list"></use></svg>
+              <span>View details</span>
+            </a>
+            <a class="button secondary" href="#contact">
+              <svg class="icon" aria-hidden="true"><use href="#icon-mail"></use></svg>
+              <span>Send a note</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="link-banner" aria-label="Team links">
+        <div class="link-banner-inner" data-scroll-panel>
+          <p class="link-banner-label">
+            <svg class="icon" aria-hidden="true"><use href="#icon-link"></use></svg>
+            <span class="visually-hidden">Links</span>
+          </p>
+          <div class="link-actions">
+            <a class="banner-link" href="https://www.instagram.com/munich_tritons/" target="_blank" rel="noopener">
+              <svg class="icon banner-link-icon" aria-hidden="true"><use href="#icon-instagram"></use></svg>
+              <span>Instagram</span>
+              <strong>@munich_tritons</strong>
+            </a>
+            <a class="banner-link" href="https://ftgern.de" target="_blank" rel="noopener">
+              <svg class="icon banner-link-icon" aria-hidden="true"><use href="#icon-globe"></use></svg>
+              <span>Website</span>
+              <strong>ftgern.de</strong>
+            </a>
           </div>
         </div>
       </section>
 
       <section class="section details-section" id="details">
-        <div class="section-copy">
+        <div class="section-copy" data-scroll-panel>
           <p class="eyebrow">Essentials</p>
           <h2>Current team information</h2>
         </div>
-        <dl class="fact-list reveal">
+        <dl class="fact-list reveal" data-scroll-panel>
           <div>
-            <dt>Main Website</dt>
-            <dd><a class="text-link" href="https://ftgern.de" target="_blank" rel="noopener">FT Gern</a></dd>
-          </div>
-          <div>
-            <dt>Training</dt>
+            <dt>
+              <svg class="icon" aria-hidden="true"><use href="#icon-calendar"></use></svg>
+              <span>Training</span>
+            </dt>
             <dd>Saturdays, 8:30 - 10:00 am</dd>
           </div>
           <div>
-            <dt>Matches</dt>
+            <dt>
+              <svg class="icon" aria-hidden="true"><use href="#icon-trophy"></use></svg>
+              <span>Matches</span>
+            </dt>
             <dd>To be decided</dd>
           </div>
           <div>
-            <dt>Location</dt>
+            <dt>
+              <svg class="icon" aria-hidden="true"><use href="#icon-location"></use></svg>
+              <span>Location</span>
+            </dt>
             <dd>Anton-Fingerle Zentrum</dd>
           </div>
         </dl>
       </section>
 
       <section class="section contact-section" id="contact">
-        <div class="join-copy">
+        <div class="join-copy" data-scroll-panel>
           <p class="eyebrow">Contact</p>
           <h2>Send a note</h2>
           <p>Share your name and email and we will reply soon.</p>
         </div>
 
-        <form class="join-form" data-join-form>
+        <form class="join-form" data-join-form data-scroll-panel>
           <label>
-            Name
+            <span class="field-label">
+              <svg class="icon" aria-hidden="true"><use href="#icon-user"></use></svg>
+              <span>Name</span>
+            </span>
             <input type="text" name="name" autocomplete="name" required />
           </label>
           <label>
-            Email
+            <span class="field-label">
+              <svg class="icon" aria-hidden="true"><use href="#icon-mail"></use></svg>
+              <span>Email</span>
+            </span>
             <input type="email" name="email" autocomplete="email" required />
           </label>
           <label>
-            Group
+            <span class="field-label">
+              <svg class="icon" aria-hidden="true"><use href="#icon-users"></use></svg>
+              <span>Group</span>
+            </span>
             <select name="group" required>
               <option value="">Choose a group</option>
               <option>General question</option>
@@ -108,14 +221,20 @@
               <option>Other</option>
             </select>
           </label>
-          <button class="button primary" type="submit">Send request</button>
+          <button class="button primary" type="submit">
+            <svg class="icon" aria-hidden="true"><use href="#icon-send"></use></svg>
+            <span>Send request</span>
+          </button>
           <p class="form-note" data-form-note role="status" aria-live="polite"></p>
         </form>
       </section>
     </main>
 
     <footer class="site-footer">
-      <a href="#home">Back to top</a>
+      <a href="#home">
+        <svg class="icon" aria-hidden="true"><use href="#icon-arrow-up"></use></svg>
+        <span>Back to top</span>
+      </a>
     </footer>
 
     <script src="script.js"></script>
