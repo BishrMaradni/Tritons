@@ -131,8 +131,13 @@ p:last-child { margin-bottom: 0; }
   box-shadow: 0 2px 20px rgba(0, 0, 0, .2);
 }
 
+.brand-group { display: flex; align-items: center; }
 .brand { display: flex; align-items: center; }
 .brand-wordmark { height: 40px; width: auto; }
+.brand-spacer { width: 1px; height: 28px; background: var(--glass-border); margin: 0 .75rem; }
+.brand-abteilung { display: flex; align-items: center; }
+.brand-abteilung img { height: 32px; width: auto; opacity: .7; transition: opacity .2s; }
+.brand-abteilung:hover img { opacity: 1; }
 
 .site-nav {
   display: flex; align-items: center; gap: 1.5rem;
@@ -1038,7 +1043,7 @@ p:last-child { margin-bottom: 0; }
   align-items: center;
   justify-content: space-between;
   gap: 2rem;
-  padding: 1.5rem clamp(1.5rem, 5vw, 3rem);
+  padding: 1.5rem clamp(1rem, 3vw, 2rem);
   flex-wrap: wrap;
 }
 
@@ -1049,7 +1054,7 @@ p:last-child { margin-bottom: 0; }
 }
 
 .footer-logo {
-  width: 36px; height: auto;
+  height: 2.4rem; width: auto;
   flex-shrink: 0;
 }
 
