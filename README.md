@@ -1,21 +1,40 @@
 # Munich Tritons Website
 
-Static website for the Munich Tritons water polo team.
+Official website for the **Munich Tritons** water polo team, part of [FT Gern](https://ftgern.de). A single-page landing site built with vanilla HTML, CSS, and JavaScript — no frameworks, no build tools.
 
-## GitHub Pages
+**Live:** [munichtritons.de](https://munichtritons.de) (or [bishrmaradni.github.io/Tritons](https://bishrmaradni.github.io/Tritons))
 
-This repository is ready to publish with GitHub Pages through GitHub Actions.
+## Quick Start
 
-1. Push the repository to GitHub on the `main` branch.
-2. In GitHub, open `Settings` > `Pages`.
-3. Set `Source` to `GitHub Actions`.
-4. Push a change or run the `Deploy GitHub Pages` workflow manually.
+```bash
+# Option 1: open directly
+open index.html
 
-The workflow publishes only:
+# Option 2: local server (for form testing)
+python3 -m http.server 8000
+```
 
-- `index.html`
-- `styles.css`
-- `script.js`
-- `assets/`
+## File Structure
 
-No build step is required.
+```
+index.html              Main page (8 sections)
+styles.css              All styles, dark mode, responsive
+script.js               Theme toggle, scroll effects, form handler
+robots.txt              Search engine directives
+sitemap.xml             Sitemap for SEO
+assets/                 Original high-res images
+assets/web/             Optimized images for the site
+.github/workflows/      GitHub Pages deployment
+docs/                   Documentation
+```
+
+## Deployment
+
+Push to `main` and GitHub Actions deploys automatically via the `Deploy GitHub Pages` workflow.
+
+1. Go to **Settings > Pages** and set Source to **GitHub Actions**.
+2. Push to `main` or trigger the workflow manually.
+
+## Documentation
+
+See [docs/WEBSITE_OVERVIEW.md](docs/WEBSITE_OVERVIEW.md) for the full guide: content updates, Formspree setup, domain configuration, image optimization, and more.

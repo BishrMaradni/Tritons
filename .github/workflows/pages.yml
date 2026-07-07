@@ -28,7 +28,7 @@ jobs:
       - name: Prepare static site
         run: |
           mkdir -p _site
-          cp index.html styles.css script.js _site/
+          cp index.html styles.css script.js robots.txt sitemap.xml impressum.html datenschutz.html _site/
           cp -R assets _site/assets
           touch _site/.nojekyll
           find _site -name ".DS_Store" -delete

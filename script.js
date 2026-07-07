@@ -6,7 +6,7 @@ const themeToggle = document.querySelector("[data-theme-toggle]");
 const scrollHero = document.querySelector("[data-scroll-hero]");
 const scrollPanels = [...document.querySelectorAll("[data-scroll-panel]")];
 const joinForm = document.querySelector("[data-join-form]");
-const formNote = document.querySelector("[data-form-note]");
+const formFeedback = document.querySelector("[data-form-note]");
 const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 let scrollMotionQueued = false;
 
@@ -144,12 +144,116 @@ themeToggle.addEventListener("click", () => {
   setTheme(nextTheme);
 });
 
-joinForm.addEventListener("submit", (event) => {
+const validationRules = {
+  name: { required: "Please enter your name", minLength: [2, "Name must be at least 2 characters"] },
+  email: { required: "Please enter your email", pattern: [/^[^\s@]+@[^\s@]+\.[^\s@]+$/, "Please enter a valid email address"] },
+  group: { required: "Please select an option" },
+};
+
+function validateField(field) {
+  const rules = validationRules[field.name];
+  if (!rules) return "";
+  const value = field.value.trim();
+  if (rules.required && !value) return rules.required;
+  if (rules.minLength && value.length < rules.minLength[0]) return rules.minLength[1];
+  if (rules.pattern && !rules.pattern[0].test(value)) return rules.pattern[1];
+  return "";
+}
+
+function showFieldState(field, error) {
+  const formField = field.closest(".form-field");
+  if (!formField) return;
+  const errorEl = formField.querySelector(".field-error");
+  formField.classList.toggle("invalid", !!error);
+  formField.classList.toggle("valid", !error && field.value.trim().length > 0);
+  if (errorEl) {
+    errorEl.textContent = error;
+    errorEl.classList.toggle("visible", !!error);
+  }
+}
+
+function showFeedback(type, message) {
+  formFeedback.textContent = message;
+  formFeedback.className = "form-feedback visible " + type;
+}
+
+function clearFeedback() {
+  formFeedback.textContent = "";
+  formFeedback.className = "form-feedback";
+}
+
+joinForm.querySelectorAll("input, select, textarea").forEach((field) => {
+  if (!validationRules[field.name]) return;
+  field.addEventListener("blur", () => {
+    if (field.dataset.touched !== "true") field.dataset.touched = "true";
+    showFieldState(field, validateField(field));
+  });
+  field.addEventListener("input", () => {
+    if (field.dataset.touched === "true") showFieldState(field, validateField(field));
+  });
+});
+
+const selectGroup = joinForm.querySelector("select[name='group']");
+if (selectGroup) {
+  selectGroup.addEventListener("change", () => {
+    selectGroup.closest(".input-wrap").classList.toggle("has-value", !!selectGroup.value);
+    if (selectGroup.dataset.touched === "true") showFieldState(selectGroup, validateField(selectGroup));
+  });
+}
+
+joinForm.addEventListener("submit", async (event) => {
   event.preventDefault();
+  const submitBtn = joinForm.querySelector(".submit-btn");
+  const fields = joinForm.querySelectorAll("input:not([type='hidden']):not([name='_gotcha']), select, textarea");
+  let firstInvalid = null;
+
+  fields.forEach((field) => {
+    field.dataset.touched = "true";
+    const error = validateField(field);
+    showFieldState(field, error);
+    if (error && !firstInvalid) firstInvalid = field;
+  });
+
+  if (firstInvalid) {
+    firstInvalid.focus();
+    return;
+  }
+
   const formData = new FormData(joinForm);
   const firstName = String(formData.get("name")).trim().split(" ")[0] || "there";
-  formNote.textContent = `Thanks, ${firstName}. We will follow up shortly.`;
-  joinForm.reset();
+  const action = joinForm.getAttribute("action");
+
+  submitBtn.disabled = true;
+  submitBtn.classList.add("loading");
+  clearFeedback();
+
+  try {
+    const response = await fetch(action, {
+      method: "POST",
+      body: formData,
+      headers: { Accept: "application/json" },
+    });
+
+    if (response.ok) {
+      showFeedback("success", `Thanks, ${firstName}! We'll be in touch shortly.`);
+      joinForm.reset();
+      joinForm.querySelectorAll(".form-field").forEach((f) => {
+        f.classList.remove("valid", "invalid");
+        const err = f.querySelector(".field-error");
+        if (err) { err.textContent = ""; err.classList.remove("visible"); }
+      });
+      joinForm.querySelectorAll(".input-wrap").forEach((w) => w.classList.remove("has-value"));
+    } else {
+      const data = await response.json().catch(() => null);
+      const msg = data?.errors?.map((e) => e.message).join(", ") || "Something went wrong. Please try again or email us directly.";
+      showFeedback("error", msg);
+    }
+  } catch {
+    showFeedback("error", "Network error — please check your connection and try again.");
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.classList.remove("loading");
+  }
 });
 
 setTheme(getSavedTheme() === "night" ? "night" : "day");
