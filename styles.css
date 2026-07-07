@@ -333,9 +333,7 @@ p:last-child { margin-bottom: 0; }
   background: radial-gradient(ellipse at 20% 70%, var(--glow-water), transparent 60%);
 }
 
-#why-join {
-  background: linear-gradient(180deg, var(--navy) 0%, var(--navy-deep) 100%);
-}
+#why-join { background: var(--navy-deep); }
 #why-join::before {
   background: radial-gradient(ellipse at 75% 20%, var(--glow-gold), transparent 55%);
 }
@@ -350,9 +348,7 @@ p:last-child { margin-bottom: 0; }
   background: radial-gradient(ellipse at 60% 40%, var(--glow-gold), transparent 55%);
 }
 
-#faq {
-  background: linear-gradient(180deg, var(--navy) 0%, var(--navy-deep) 100%);
-}
+#faq { background: var(--navy-deep); }
 #faq::before {
   background: radial-gradient(ellipse at 30% 50%, var(--glow-water), transparent 55%);
 }
@@ -1213,7 +1209,8 @@ p:last-child { margin-bottom: 0; }
 }
 .lightbox-close:hover { color: #fff; }
 
-.gallery-item { cursor: zoom-in; }
+.gallery-item,
+.about-image-wrap { cursor: zoom-in; }
 
 /* ── Reveal animation ───────────────────────────────────── */
 .reveal {

@@ -438,7 +438,7 @@ function setupLightbox() {
     lb.setAttribute("aria-hidden", "true");
   }
 
-  document.querySelectorAll(".gallery-item img").forEach(function(img) {
+  document.querySelectorAll(".gallery-item img, .about-image-wrap img").forEach(function(img) {
     img.addEventListener("click", function() { showImage(img.src, img.alt); });
   });
 
