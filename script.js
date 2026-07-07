@@ -2,7 +2,6 @@ const header = document.querySelector("[data-header]");
 const menuButton = document.querySelector("[data-menu-button]");
 const nav = document.querySelector("[data-nav]");
 const navLinks = [...document.querySelectorAll(".site-nav a")];
-const themeToggle = document.querySelector("[data-theme-toggle]");
 const scrollHero = document.querySelector("[data-scroll-hero]");
 const scrollPanels = [...document.querySelectorAll("[data-scroll-panel]")];
 const joinForm = document.querySelector("[data-join-form]");
@@ -12,29 +11,6 @@ let scrollMotionQueued = false;
 
 function clamp(value, min, max) {
   return Math.min(Math.max(value, min), max);
-}
-
-function getSavedTheme() {
-  try {
-    return localStorage.getItem("theme");
-  } catch {
-    return null;
-  }
-}
-
-function saveTheme(theme) {
-  try {
-    localStorage.setItem("theme", theme);
-  } catch {
-    // The visual toggle still works if browser storage is unavailable.
-  }
-}
-
-function setTheme(theme) {
-  const isNight = theme === "night";
-  document.body.dataset.theme = isNight ? "night" : "day";
-  themeToggle.setAttribute("aria-pressed", String(isNight));
-  themeToggle.setAttribute("aria-label", isNight ? "Disable night mode" : "Enable night mode");
 }
 
 function setHeaderState() {
@@ -106,7 +82,7 @@ function observeSections() {
 }
 
 function observeReveals() {
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  if (reducedMotionQuery.matches) {
     document.querySelectorAll(".reveal").forEach((item) => item.classList.add("visible"));
     return;
   }
@@ -126,6 +102,14 @@ function observeReveals() {
   document.querySelectorAll(".reveal").forEach((item) => revealObserver.observe(item));
 }
 
+function setupStaggerChildren() {
+  document.querySelectorAll(".stagger-children").forEach((container) => {
+    [...container.children].forEach((child, i) => {
+      child.style.setProperty("--i", i);
+    });
+  });
+}
+
 menuButton.addEventListener("click", () => toggleMenu());
 navLinks.forEach((link) => link.addEventListener("click", () => toggleMenu(false)));
 window.addEventListener("scroll", setHeaderState, { passive: true });
@@ -137,12 +121,6 @@ if (typeof reducedMotionQuery.addEventListener === "function") {
 } else {
   reducedMotionQuery.addListener(requestScrollMotionUpdate);
 }
-
-themeToggle.addEventListener("click", () => {
-  const nextTheme = document.body.dataset.theme === "night" ? "day" : "night";
-  saveTheme(nextTheme);
-  setTheme(nextTheme);
-});
 
 const validationRules = {
   name: { required: "Please enter your name", minLength: [2, "Name must be at least 2 characters"] },
@@ -204,7 +182,7 @@ if (selectGroup) {
 joinForm.addEventListener("submit", async (event) => {
   event.preventDefault();
   const submitBtn = joinForm.querySelector(".submit-btn");
-  const fields = joinForm.querySelectorAll("input:not([type='hidden']):not([name='_gotcha']), select, textarea");
+  const fields = joinForm.querySelectorAll("input:not([type='hidden']):not([name='_honey']), select, textarea");
   let firstInvalid = null;
 
   fields.forEach((field) => {
@@ -221,14 +199,13 @@ joinForm.addEventListener("submit", async (event) => {
 
   const formData = new FormData(joinForm);
   const firstName = String(formData.get("name")).trim().split(" ")[0] || "there";
-  const action = joinForm.getAttribute("action");
 
   submitBtn.disabled = true;
   submitBtn.classList.add("loading");
   clearFeedback();
 
   try {
-    const response = await fetch(action, {
+    const response = await fetch(joinForm.action, {
       method: "POST",
       body: formData,
       headers: { Accept: "application/json" },
@@ -244,20 +221,48 @@ joinForm.addEventListener("submit", async (event) => {
       });
       joinForm.querySelectorAll(".input-wrap").forEach((w) => w.classList.remove("has-value"));
     } else {
-      const data = await response.json().catch(() => null);
-      const msg = data?.errors?.map((e) => e.message).join(", ") || "Something went wrong. Please try again or email us directly.";
-      showFeedback("error", msg);
+      showFeedback("error", "Something went wrong. You can email us directly at munich.tritons@gmail.com");
     }
   } catch {
-    showFeedback("error", "Network error — please check your connection and try again.");
+    showFeedback("error", "Network error — please check your connection or email us at munich.tritons@gmail.com");
   } finally {
     submitBtn.disabled = false;
     submitBtn.classList.remove("loading");
   }
 });
 
-setTheme(getSavedTheme() === "night" ? "night" : "day");
+function setupLightbox() {
+  var lb = document.getElementById("lightbox");
+  if (!lb) return;
+  var lbImg = lb.querySelector(".lightbox-img");
+  var lbCloseBtn = lb.querySelector(".lightbox-close");
+
+  function showImage(src, alt) {
+    lbImg.src = src;
+    lbImg.alt = alt;
+    lb.classList.add("active");
+    lb.setAttribute("aria-hidden", "false");
+  }
+
+  function hideImage() {
+    lb.classList.remove("active");
+    lb.setAttribute("aria-hidden", "true");
+  }
+
+  document.querySelectorAll(".gallery-item img").forEach(function(img) {
+    img.addEventListener("click", function() { showImage(img.src, img.alt); });
+  });
+
+  lb.addEventListener("click", function(e) {
+    if (e.target === lb || e.target === lbCloseBtn) hideImage();
+  });
+
+  lbCloseBtn.addEventListener("click", hideImage);
+}
+
 setHeaderState();
 updateScrollMotion();
 observeSections();
 observeReveals();
+setupStaggerChildren();
+setupLightbox();

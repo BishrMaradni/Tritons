@@ -9,45 +9,46 @@ A single-page landing site for the Munich Tritons water polo team. Built with va
 | File | Purpose |
 |------|---------|
 | `index.html` | All page content, SEO metadata, structured data |
-| `styles.css` | Styling, responsive layout, dark/light mode |
-| `script.js` | Theme toggle, scroll effects, form submission |
+| `styles.css` | Dark-first design system, responsive layout |
+| `script.js` | Scroll effects, form validation & submission |
+| `impressum.html` | Legal notice (German law requirement) |
+| `datenschutz.html` | Privacy policy (GDPR requirement) |
 | `robots.txt` | Search engine crawl directives |
 | `sitemap.xml` | Sitemap for search engines |
-| `assets/` | Original high-resolution images (not served to users) |
-| `assets/web/` | Optimized web images (served to users) |
+| `assets/web/` | Optimized web images |
 
-### Sections
+### Sections (10 total)
 
-1. **Hero** (`#home`) — Full-width hero with team logo and CTAs
-2. **Link Banner** — Instagram and FT Gern links
-3. **About** (`#about`) — Team introduction with action photo
-4. **Why Join** (`#why-join`) — Four benefit cards
-5. **Training** (`#training`) — Schedule, location, match info
-6. **Gallery** (`#gallery`) — Photo grid
-7. **FAQ** (`#faq`) — Accordion-style Q&A
-8. **Contact** (`#contact`) — Inquiry form (via Formspree)
+1. **Header** — Sticky, glass-blur on scroll. Nav: About, Training, FAQ, Contact
+2. **Hero** (`#home`) — Centered layout with Tritons logo, headline, subtitle, two CTAs
+3. **Credibility Strip** — FT Gern 1903, Saturdays 8:30 AM, All Levels Welcome, @munich_tritons
+4. **About** (`#about`) — Light section. Team introduction with action photo
+5. **Why Join** (`#why-join`) — Dark section. Four glass cards: Fitness, Community, Competition, All Levels
+6. **Training** (`#training`) — Light section. Schedule, location, match info
+7. **Gallery** (`#gallery`) — Light section. Asymmetric 3-image CSS grid
+8. **FAQ** (`#faq`) — Light section. 5 accordion-style Q&A with numbered badges
+9. **Contact** (`#contact`) — Dark section. Glass form card with mailto fallback
+10. **Footer** — Dark gradient. Logo, quick links, social/legal links
 
-### Theming
+### Design System
 
-Colors are controlled by CSS custom properties in `:root` and `[data-theme="night"]`. The main tokens:
+Single dark-first design (no theme toggle). Colors via CSS custom properties:
 
-- `--ink` / `--paper` — text and background
-- `--sun` — gold accent
-- `--pool` — dark navy for hero/footer
+- `--navy` / `--navy-deep` — dark backgrounds
+- `--paper` — warm off-white for light sections
+- `--sun` — gold accent (CTAs, highlights)
+- `--water` — water blue accent
+- `--glass-bg` / `--glass-border` — glassmorphism on dark sections
 
-The theme toggle saves preference to `localStorage`.
+Section rhythm: alternating `.section--light` (paper) and `.section--dark` (navy + radial glows).
 
 ---
 
 ## Running Locally
 
 ```bash
-# Just open the file
-open index.html
-
-# Or use a local server (needed for form testing)
-python3 -m http.server 8000
-# Then visit http://localhost:8000
+python3 -m http.server 8080
+# Then visit http://localhost:8080
 ```
 
 ---
@@ -63,19 +64,39 @@ Push to `main` on GitHub. The workflow at `.github/workflows/pages.yml` copies t
 
 ---
 
+## Contact Form (FormSubmit)
+
+The form uses [FormSubmit](https://formsubmit.co/) to send submissions to `munich.tritons@gmail.com`.
+
+### How It Works
+
+- **Without JavaScript**: The HTML form posts directly to FormSubmit. After submission, the user is redirected back to the site via the `_next` hidden field.
+- **With JavaScript**: The form is enhanced with client-side validation and AJAX submission (using `Accept: application/json` header). Success/error feedback is shown inline.
+- **Mailto fallback**: A direct email link is always visible below the form.
+
+### First-Time Activation
+
+The very first form submission triggers a confirmation email from FormSubmit to `munich.tritons@gmail.com`. Someone must click the confirmation link in that email. After that, all future submissions are delivered automatically. This is a one-time step.
+
+### Hidden Fields
+
+- `_subject` — Email subject line
+- `_next` — Redirect URL after native form submission
+- `_captcha` — Disabled (set to false)
+- `_template` — Email template format (table)
+- `_honey` — Honeypot field for spam protection
+
+---
+
 ## Updating Content
 
 ### Training Schedule
 
-Edit the training details in `index.html` inside the `#training` section. Look for the `.detail-card` elements:
-
-```html
-<span class="detail-value">Saturdays, 8:30 – 10:00 am</span>
-```
+Edit the `#training` section in `index.html`. Look for the `<dd>` elements inside the `.fact-list`.
 
 ### FAQ
 
-Each question is a native `<details>` element in the `#faq` section. Add or edit entries:
+Each question is a `<details>` element in the `#faq` section:
 
 ```html
 <details class="faq-item reveal">
@@ -89,43 +110,19 @@ Each question is a native `<details>` element in the `#faq` section. Add or edit
 
 ### Gallery
 
-Add images to the `.gallery-grid` in the `#gallery` section. Optimize new images first (see below).
-
----
-
-## Contact Form (Formspree)
-
-The form currently has a placeholder `{FORM_ID}`. To make it work:
-
-1. Create a free account at [formspree.io](https://formspree.io)
-2. Create a new form — Formspree gives you an endpoint like `https://formspree.io/f/xyzabcde`
-3. In `index.html`, replace `{FORM_ID}` with your form ID:
-
-```html
-<form class="join-form" action="https://formspree.io/f/xyzabcde" method="POST" ...>
-```
-
-4. Deploy and test. Submissions will appear in your Formspree dashboard and be forwarded to your email.
-
-**Note:** The form includes a honeypot field (`_gotcha`) for spam protection and a hidden `_subject` field for email subject lines.
+Add images to the `.gallery-grid` in the `#gallery` section. The grid uses an asymmetric layout — the first image spans 2 rows.
 
 ---
 
 ## Image Optimization
 
-Original images in `assets/` are very large (8000x8000px, 28MB total). The `assets/web/` folder contains optimized versions.
-
-To optimize a new image on macOS:
+The `assets/web/` folder contains optimized images. To optimize a new image on macOS:
 
 ```bash
-# Resize to max 1200px wide, preserving aspect ratio
 sips --resampleWidth 1200 original.jpg --out assets/web/optimized.jpg
-
-# For PNG logos, use 500px width
-sips --resampleWidth 500 logo.png --out assets/web/logo-web.png
 ```
 
-Target sizes: hero backgrounds ~1920w, content images ~1200w, logos ~500w, favicons 32/180px.
+Target sizes: hero backgrounds ~1920w, content images ~1200w, logos ~500w.
 
 ---
 
@@ -135,9 +132,8 @@ The canonical domain is `munichtritons.de`. To set it up:
 
 ### DNS Records
 
-Add these records at your DNS provider:
+Add A records at your DNS provider:
 
-**Option A — A records (recommended):**
 ```
 A    @    185.199.108.153
 A    @    185.199.109.153
@@ -145,12 +141,7 @@ A    @    185.199.110.153
 A    @    185.199.111.153
 ```
 
-**Option B — CNAME:**
-```
-CNAME    @    bishrmaradni.github.io
-```
-
-**For www subdomain (either option):**
+For www subdomain:
 ```
 CNAME    www    bishrmaradni.github.io
 ```
@@ -159,10 +150,8 @@ CNAME    www    bishrmaradni.github.io
 
 1. Go to repo **Settings > Pages**
 2. Under **Custom domain**, enter `munichtritons.de`
-3. Check **Enforce HTTPS** (may take a few minutes to provision the certificate)
+3. Check **Enforce HTTPS**
 4. Create a `CNAME` file in the repo root containing `munichtritons.de`
-
-### Secondary Domain
 
 If you also own `munichtritons.com`, set up a redirect at that registrar to point to `munichtritons.de`.
 
@@ -170,36 +159,25 @@ If you also own `munichtritons.com`, set up a redirect at that registrar to poin
 
 ## SEO
 
-The site includes:
-
-- Open Graph meta tags (title, description, image, URL)
-- Twitter Card meta tags
-- Canonical URL (`https://munichtritons.de/`)
-- JSON-LD structured data (SportsTeam schema)
-- Semantic HTML (`<header>`, `<main>`, `<section>`, `<footer>`)
-- `robots.txt` and `sitemap.xml`
-
-To update the OG image, replace `assets/web/og-image.jpg` (should be 1200x630px or similar).
+The site includes: Open Graph tags, Twitter Cards, canonical URL, JSON-LD (SportsTeam schema), semantic HTML, `robots.txt`, `sitemap.xml`.
 
 ---
 
-## Legal Compliance (German Law)
+## Legal Pages
 
-German websites require:
+German websites require Impressum and Datenschutzerklärung. Both pages exist but have placeholder fields that must be filled in before going live:
+- `impressum.html` — club address, board member names, registry number
+- `datenschutz.html` — club address, updated for FormSubmit
 
-- **Impressum** (legal notice) — mandatory for any non-purely-personal site
-- **Datenschutzerklärung** (privacy policy) — mandatory under GDPR
-
-The footer has placeholder links for these. You should create separate pages or sections with the required legal text. Consult with FT Gern about whether the club's existing Impressum covers this site.
+**Important**: Both pages have TODO comments flagging them for team review.
 
 ---
 
 ## Accessibility
 
-The site includes:
 - Skip-to-content link
 - ARIA labels on interactive elements
 - `prefers-reduced-motion` support (disables parallax/animations)
 - Keyboard-navigable FAQ accordion
 - Descriptive alt text on all images
-- Sufficient color contrast in both themes
+- Scroll-reveal animations with IntersectionObserver

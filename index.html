@@ -113,9 +113,6 @@
         <path d="M15 5.764v15" />
         <path d="M9 3.236v15" />
       </symbol>
-      <symbol id="icon-moon" viewBox="0 0 24 24">
-        <path d="M12 3a6 6 0 0 0 9 7.5A9 9 0 1 1 12 3Z" />
-      </symbol>
       <symbol id="icon-send" viewBox="0 0 24 24">
         <path d="m22 2-7 20-4-9-9-4Z" />
         <path d="M22 2 11 13" />
@@ -150,7 +147,7 @@
 
     <header class="site-header" data-header>
       <a class="brand" href="#home" aria-label="Munich Tritons home">
-        <img class="brand-wordmark" src="assets/web/logo-wordmark.png" alt="" aria-hidden="true" />
+        <img class="brand-wordmark" src="assets/web/logo-graphic.png" alt="" aria-hidden="true" />
       </a>
 
       <button class="menu-button" type="button" aria-label="Open menu" aria-expanded="false" data-menu-button>
@@ -166,19 +163,6 @@
           <svg class="icon" aria-hidden="true"><use href="#icon-mail"></use></svg>
           <span>Contact</span>
         </a>
-        <button
-          class="theme-toggle"
-          type="button"
-          aria-label="Enable night mode"
-          aria-pressed="false"
-          title="Night mode"
-          data-theme-toggle
-        >
-          <span class="theme-toggle-track" aria-hidden="true">
-            <svg class="icon theme-icon" aria-hidden="true"><use href="#icon-moon"></use></svg>
-            <span class="theme-toggle-thumb"></span>
-          </span>
-        </button>
       </nav>
     </header>
 
@@ -189,9 +173,9 @@
         <div class="hero-overlay"></div>
         <div class="hero-content">
           <h1 class="visually-hidden">Munich Tritons - Water Polo in Munich</h1>
-          <img class="hero-wordmark" src="assets/web/logo-graphic.png" alt="" aria-hidden="true" width="500" height="545" />
-          <p class="eyebrow">Part of FT Gern</p>
-          <p class="hero-copy">Water polo in Munich for those who are willing to put in the effort. We welcome new players and returning professionals alike.</p>
+          <img class="hero-logo" src="assets/web/logo-graphic.png" alt="" aria-hidden="true" width="500" height="545" />
+          <p class="hero-title">Train Hard. Play Together.</p>
+          <p class="hero-subtitle">Munich's water polo community for players of every level.</p>
           <div class="hero-actions">
             <a class="button primary" href="#contact">
               <svg class="icon" aria-hidden="true"><use href="#icon-send"></use></svg>
@@ -204,48 +188,58 @@
         </div>
       </section>
 
-      <!-- LINK BANNER -->
-      <section class="link-banner" aria-label="Team links">
-        <div class="link-banner-inner" data-scroll-panel>
-          <p class="link-banner-label">
-            <svg class="icon" aria-hidden="true"><use href="#icon-link"></use></svg>
-            <span class="visually-hidden">Links</span>
-          </p>
-          <div class="link-actions">
-            <a class="banner-link" href="https://www.instagram.com/munich_tritons/" target="_blank" rel="noopener">
-              <svg class="icon banner-link-icon" aria-hidden="true"><use href="#icon-instagram"></use></svg>
-              <span>Instagram</span>
-              <strong>@munich_tritons</strong>
-            </a>
-            <a class="banner-link" href="https://ftgern.de" target="_blank" rel="noopener">
-              <svg class="icon banner-link-icon" aria-hidden="true"><use href="#icon-globe"></use></svg>
-              <span>Website</span>
-              <strong>ftgern.de</strong>
+      <!-- CREDIBILITY STRIP -->
+      <section class="credibility-strip" aria-label="Key facts">
+        <div class="credibility-inner">
+          <div class="credibility-item">
+            <svg class="icon" aria-hidden="true"><use href="#icon-users"></use></svg>
+            <span>All Levels Welcome</span>
+          </div>
+          <div class="credibility-item">
+            <svg class="icon" aria-hidden="true"><use href="#icon-shield"></use></svg>
+            <span>FT Gern 1903</span>
+          </div>
+          <div class="credibility-item">
+            <svg class="icon" aria-hidden="true"><use href="#icon-calendar"></use></svg>
+            <span>Saturdays 8:30 AM</span>
+          </div>
+          <div class="credibility-item">
+            <a href="https://www.instagram.com/munich_tritons/" target="_blank" rel="noopener">
+              <svg class="icon" aria-hidden="true"><use href="#icon-instagram"></use></svg>
+              <span>@munich_tritons</span>
             </a>
           </div>
         </div>
       </section>
 
       <!-- ABOUT -->
-      <section class="section about-section" id="about">
+      <section class="section section--dark about-section" id="about">
         <div class="section-copy" data-scroll-panel>
           <p class="eyebrow">About Us</p>
           <h2>Munich's Water Polo Team</h2>
-          <p>The Munich Tritons are the water polo division of <a href="https://ftgern.de" target="_blank" rel="noopener">FT Gern</a>, one of Munich's established sports clubs. We train together, compete as a team, and welcome players of all levels.</p>
-          <p>Whether you're a seasoned player looking for a competitive squad or a motivated beginner ready to dive in, there's a place for you with the Tritons. Our team brings together athletes from different backgrounds united by a love for the sport.</p>
+          <p>The Munich Tritons are the water polo division of <a href="https://ftgern.de" target="_blank" rel="noopener">FT Gern</a>, one of Munich's established sports clubs. We're a fun, mixed team — men, women, and players of all age groups training and competing together.</p>
+          <p>Whether you're a complete beginner curious about the sport or a seasoned player looking for a competitive squad, there's a place for you with the Tritons. No experience needed — just bring motivation and we'll help you get started.</p>
+          <p>Beyond the pool, we're a real community. From lasertag and padel to team dinners, Eisbach swims in the English Garden, and spontaneous hangouts — the Tritons are as much about the friendships as the sport.</p>
         </div>
         <div class="about-image-wrap reveal" data-scroll-panel>
-          <img class="about-image" src="assets/web/action-photo.jpg" alt="Munich Tritons player throwing during a water polo match" width="1200" height="675" loading="lazy" />
+          <img class="about-image" src="assets/web/team-huddle.jpg" alt="Munich Tritons team huddle at poolside during a match" width="1200" height="675" loading="lazy" />
         </div>
       </section>
 
       <!-- WHY JOIN -->
-      <section class="section why-section" id="why-join">
+      <section class="section section--dark why-section" id="why-join">
         <div class="section-copy" data-scroll-panel>
           <p class="eyebrow">Why Join</p>
           <h2>More Than a Sport</h2>
         </div>
-        <div class="benefits-grid" data-scroll-panel>
+        <div class="benefits-grid stagger-children" data-scroll-panel>
+          <div class="benefit-card reveal">
+            <div class="benefit-icon">
+              <svg class="icon" aria-hidden="true"><use href="#icon-users"></use></svg>
+            </div>
+            <h3>All Levels Welcome</h3>
+            <p>From first-time swimmers to experienced athletes. We help you develop your skills at your own pace.</p>
+          </div>
           <div class="benefit-card reveal">
             <div class="benefit-icon">
               <svg class="icon" aria-hidden="true"><use href="#icon-zap"></use></svg>
@@ -267,18 +261,11 @@
             <h3>Competitive Play</h3>
             <p>Challenge yourself in matches and tournaments. Push your limits and grow as a player on a real team.</p>
           </div>
-          <div class="benefit-card reveal">
-            <div class="benefit-icon">
-              <svg class="icon" aria-hidden="true"><use href="#icon-users"></use></svg>
-            </div>
-            <h3>All Levels Welcome</h3>
-            <p>From first-time swimmers to experienced athletes. We help you develop your skills at your own pace.</p>
-          </div>
         </div>
       </section>
 
       <!-- TRAINING -->
-      <section class="section training-section" id="training">
+      <section class="section section--dark training-section" id="training">
         <div class="section-copy" data-scroll-panel>
           <p class="eyebrow">Training</p>
           <h2>When &amp; Where</h2>
@@ -290,13 +277,15 @@
               <span>Schedule</span>
             </dt>
             <dd>Saturdays, 8:30 - 10:00 am</dd>
+            <dd class="fact-note">Early birds welcome from ~7:45</dd>
           </div>
           <div>
             <dt>
-              <svg class="icon" aria-hidden="true"><use href="#icon-trophy"></use></svg>
-              <span>Matches</span>
+              <svg class="icon" aria-hidden="true"><use href="#icon-calendar"></use></svg>
+              <span>Coming Soon</span>
             </dt>
-            <dd>To be decided</dd>
+            <dd>Thursdays, 19:00 - 20:30</dd>
+            <dd class="fact-note">Not yet confirmed — stay tuned</dd>
           </div>
           <div>
             <dt>
@@ -307,32 +296,48 @@
               <a href="https://maps.google.com/?q=Anton-Fingerle+Zentrum+Munich" target="_blank" rel="noopener">Anton-Fingerle Zentrum, Munich</a>
             </dd>
           </div>
+          <div>
+            <dt>
+              <svg class="icon" aria-hidden="true"><use href="#icon-trophy"></use></svg>
+              <span>Matches</span>
+            </dt>
+            <dd>To be decided</dd>
+          </div>
         </dl>
       </section>
 
       <!-- GALLERY -->
-      <section class="section gallery-section" id="gallery">
+      <section class="section section--light gallery-section" id="gallery">
         <div class="section-copy" data-scroll-panel>
           <p class="eyebrow">In Action</p>
           <h2>Life in the Pool</h2>
         </div>
-        <div class="gallery-grid" data-scroll-panel>
+        <div class="gallery-grid stagger-children" data-scroll-panel>
           <div class="gallery-item reveal">
-            <img src="assets/web/hero-bg.jpg" alt="Water polo player number 7 preparing to throw during a match at the pool" width="1920" height="1080" loading="lazy" />
+            <img src="assets/web/hero-bg.jpg" alt="Water polo player number 7 preparing to throw during a match" width="1920" height="1080" loading="lazy" />
           </div>
           <div class="gallery-item reveal">
-            <img src="assets/web/hero-waterpolo.jpg" alt="Water polo player holding the ball above the water, ready to pass" width="900" height="445" loading="lazy" />
+            <img src="assets/web/match-action.jpg" alt="Intense match action with splash near the goal" width="1200" height="675" loading="lazy" />
+          </div>
+          <div class="gallery-item reveal">
+            <img src="assets/web/goalie-defense.jpg" alt="Goalkeeper rising to block a shot during a water polo match" width="1200" height="675" loading="lazy" />
+          </div>
+          <div class="gallery-item reveal">
+            <img src="assets/web/player-throwing.jpg" alt="Player throwing the ball with focus and determination" width="1200" height="675" loading="lazy" />
+          </div>
+          <div class="gallery-item reveal">
+            <img src="assets/web/player-smiling.jpg" alt="Player smiling and waving in the pool after training" width="1200" height="675" loading="lazy" />
           </div>
         </div>
       </section>
 
       <!-- FAQ -->
-      <section class="section faq-section" id="faq">
+      <section class="section section--light faq-section" id="faq">
         <div class="section-copy" data-scroll-panel>
           <p class="eyebrow">FAQ</p>
           <h2>Common Questions</h2>
         </div>
-        <div class="faq-list" data-scroll-panel>
+        <div class="faq-list stagger-children" data-scroll-panel>
           <details class="faq-item reveal">
             <summary>
               <span>Do I need water polo experience to join?</span>
@@ -372,89 +377,99 @@
       </section>
 
       <!-- CONTACT -->
-      <section class="section contact-section" id="contact">
+      <section class="section section--dark contact-section" id="contact">
         <div class="join-copy" data-scroll-panel>
           <p class="eyebrow">Get in Touch</p>
           <h2>Join the Tritons</h2>
           <p>Interested in training with us? Drop us a message and we'll get back to you.</p>
         </div>
 
-        <!-- ACTION REQUIRED: Replace {FORM_ID} with your Formspree form ID. Create a free account at https://formspree.io -->
-        <form class="join-form" action="https://formspree.io/f/{FORM_ID}" method="POST" data-join-form data-scroll-panel novalidate>
-          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
-          <input type="hidden" name="_subject" value="New inquiry from Munich Tritons website" />
+        <div class="form-card" data-scroll-panel>
+          <form class="join-form" action="https://formsubmit.co/munich.tritons@gmail.com" method="POST" data-join-form novalidate>
+            <input type="hidden" name="_subject" value="New inquiry — Munich Tritons" />
+            <input type="hidden" name="_next" value="https://bishrmaradni.github.io/Tritons/index.html#contact" />
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
-          <div class="form-field">
-            <div class="input-wrap">
-              <input type="text" name="name" id="field-name" autocomplete="name" required placeholder=" " />
-              <label for="field-name">
-                <svg class="icon" aria-hidden="true"><use href="#icon-user"></use></svg>
-                <span>Full Name</span>
-              </label>
+            <div class="form-field">
+              <div class="input-wrap">
+                <input type="text" name="name" id="field-name" autocomplete="name" required placeholder=" " />
+                <label for="field-name">
+                  <svg class="icon" aria-hidden="true"><use href="#icon-user"></use></svg>
+                  <span>Full Name</span>
+                </label>
+              </div>
+              <span class="field-error" aria-live="polite"></span>
             </div>
-            <span class="field-error" aria-live="polite"></span>
-          </div>
 
-          <div class="form-field">
-            <div class="input-wrap">
-              <input type="email" name="email" id="field-email" autocomplete="email" required placeholder=" " />
-              <label for="field-email">
-                <svg class="icon" aria-hidden="true"><use href="#icon-mail"></use></svg>
-                <span>Email Address</span>
-              </label>
+            <div class="form-field">
+              <div class="input-wrap">
+                <input type="email" name="email" id="field-email" autocomplete="email" required placeholder=" " />
+                <label for="field-email">
+                  <svg class="icon" aria-hidden="true"><use href="#icon-mail"></use></svg>
+                  <span>Email Address</span>
+                </label>
+              </div>
+              <span class="field-error" aria-live="polite"></span>
             </div>
-            <span class="field-error" aria-live="polite"></span>
-          </div>
 
-          <div class="form-field">
-            <div class="input-wrap select-wrap">
-              <select name="group" id="field-group" required>
-                <option value="" disabled selected></option>
-                <option value="New player interested in joining">New player interested in joining</option>
-                <option value="Experienced player looking for a team">Experienced player looking for a team</option>
-                <option value="General question">General question</option>
-                <option value="Other">Other</option>
-              </select>
-              <label for="field-group">
-                <svg class="icon" aria-hidden="true"><use href="#icon-users"></use></svg>
-                <span>I am a...</span>
-              </label>
+            <div class="form-field">
+              <div class="input-wrap select-wrap">
+                <select name="group" id="field-group" required>
+                  <option value="" disabled selected></option>
+                  <option value="New player interested in joining">New player interested in joining</option>
+                  <option value="Experienced player looking for a team">Experienced player looking for a team</option>
+                  <option value="General question">General question</option>
+                  <option value="Other">Other</option>
+                </select>
+                <label for="field-group">
+                  <svg class="icon" aria-hidden="true"><use href="#icon-users"></use></svg>
+                  <span>I am a...</span>
+                </label>
+              </div>
+              <span class="field-error" aria-live="polite"></span>
             </div>
-            <span class="field-error" aria-live="polite"></span>
-          </div>
 
-          <div class="form-field">
-            <div class="input-wrap">
-              <textarea name="message" id="field-message" rows="4" placeholder=" "></textarea>
-              <label for="field-message">
-                <svg class="icon" aria-hidden="true"><use href="#icon-send"></use></svg>
-                <span>Message (optional)</span>
-              </label>
+            <div class="form-field">
+              <div class="input-wrap">
+                <textarea name="message" id="field-message" rows="4" placeholder=" "></textarea>
+                <label for="field-message">
+                  <svg class="icon" aria-hidden="true"><use href="#icon-send"></use></svg>
+                  <span>Message (optional)</span>
+                </label>
+              </div>
             </div>
-          </div>
 
-          <button class="button primary submit-btn" type="submit">
-            <span class="btn-text">Send Message</span>
-            <span class="btn-spinner" aria-hidden="true"></span>
-          </button>
+            <button class="button primary submit-btn" type="submit">
+              <span class="btn-text">Send Message</span>
+              <span class="btn-spinner" aria-hidden="true"></span>
+            </button>
 
-          <div class="form-feedback" data-form-note role="status" aria-live="polite"></div>
-        </form>
+            <div class="form-feedback" data-form-note role="status" aria-live="polite"></div>
+          </form>
+
+          <p class="form-fallback">Prefer email? Write us at <a href="mailto:munich.tritons@gmail.com">munich.tritons@gmail.com</a></p>
+        </div>
 
         <noscript>
-          <p class="noscript-fallback">JavaScript is required for the contact form. You can also reach us on <a href="https://www.instagram.com/munich_tritons/">Instagram @munich_tritons</a>.</p>
+          <p class="noscript-fallback">JavaScript is required for enhanced form features. The form still works without it — just click Send. You can also reach us at <a href="mailto:munich.tritons@gmail.com">munich.tritons@gmail.com</a> or on <a href="https://www.instagram.com/munich_tritons/">Instagram @munich_tritons</a>.</p>
         </noscript>
       </section>
 
     </main>
 
     <footer class="site-footer">
-      <div class="footer-inner">
+      <div class="footer-main">
         <div class="footer-brand">
-          <img class="footer-logo" src="assets/web/logo-wordmark.png" alt="Munich Tritons" width="200" height="97" loading="lazy" />
-          <p>Water polo team in Munich.<br />Part of FT Gern.</p>
+          <img class="footer-logo" src="assets/web/logo-graphic.png" alt="Munich Tritons" width="100" height="109" loading="lazy" />
+          <div class="footer-brand-text">
+            <strong class="footer-brand-name">Munich Tritons</strong>
+            <span class="footer-brand-sub">Wasserball bei FT Gern</span>
+            <p class="footer-brand-tagline">Water polo in Munich. Train hard, play together.</p>
+          </div>
         </div>
-        <div class="footer-links">
+        <nav class="footer-col" aria-label="Quick links">
           <h3>Quick Links</h3>
           <ul>
             <li><a href="#about">About</a></li>
@@ -462,8 +477,8 @@
             <li><a href="#faq">FAQ</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
-        </div>
-        <div class="footer-links">
+        </nav>
+        <div class="footer-col">
           <h3>Connect</h3>
           <ul>
             <li>
@@ -478,7 +493,15 @@
                 FT Gern
               </a>
             </li>
+            <li>
+              <a href="mailto:munich.tritons@gmail.com">
+                <svg class="icon" aria-hidden="true"><use href="#icon-mail"></use></svg>
+                Email
+              </a>
+            </li>
           </ul>
+        </div>
+        <div class="footer-col">
           <h3>Legal</h3>
           <ul>
             <li><a href="impressum.html">Impressum</a></li>
@@ -487,13 +510,18 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; Munich Tritons, part of <a href="https://ftgern.de" target="_blank" rel="noopener">FT Gern</a></p>
-        <a href="#home" class="back-to-top">
+        <p>&copy; 2026 Munich Tritons &middot; Wasserball bei FT Gern</p>
+        <a href="#home" class="back-to-top" aria-label="Back to top">
           <svg class="icon" aria-hidden="true"><use href="#icon-arrow-up"></use></svg>
-          <span>Back to top</span>
+          Back to top
         </a>
       </div>
     </footer>
+
+    <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="Image viewer">
+      <button class="lightbox-close" type="button" aria-label="Close image viewer">&times;</button>
+      <img class="lightbox-img" src="" alt="" />
+    </div>
 
     <script src="script.js"></script>
   </body>
