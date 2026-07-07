@@ -620,7 +620,7 @@ h3 {
   content: "";
   position: absolute;
   inset: 0;
-  background: url("assets/Tritons\ backdrop\ FT\ Gern.jpg") center top / 1080px auto repeat;
+  background: var(--blue-backdrop) center top / 1080px auto repeat;
   opacity: 1;
   pointer-events: none;
 }
