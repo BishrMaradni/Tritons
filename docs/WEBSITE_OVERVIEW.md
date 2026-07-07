@@ -21,7 +21,7 @@ A single-page landing site for the Munich Tritons water polo team. Built with va
 
 1. **Header** — Sticky, glass-blur on scroll. Nav: About, Training, FAQ, Contact
 2. **Hero** (`#home`) — Centered layout with Tritons logo, headline, subtitle, two CTAs
-3. **Credibility Strip** — FT Gern 1903, Saturdays 8:30 AM, All Levels Welcome, @munich_tritons
+3. **Credibility Strip** — FT Gern 1907, Saturdays 8:30 AM, All Levels Welcome, @munich_tritons
 4. **About** (`#about`) — Light section. Team introduction with action photo
 5. **Why Join** (`#why-join`) — Dark section. Four glass cards: Fitness, Community, Competition, All Levels
 6. **Training** (`#training`) — Light section. Schedule, location, match info
