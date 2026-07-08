@@ -209,6 +209,7 @@ function setLanguage(lang) {
 const header = document.querySelector("[data-header]");
 const menuButton = document.querySelector("[data-menu-button]");
 const nav = document.querySelector("[data-nav]");
+const menuOverlay = document.querySelector("[data-menu-overlay]");
 const navLinks = [...document.querySelectorAll(".site-nav a")];
 const scrollHero = document.querySelector("[data-scroll-hero]");
 const scrollPanels = [...document.querySelectorAll("[data-scroll-panel]")];
@@ -268,6 +269,7 @@ function toggleMenu(forceOpen) {
   nav.classList.toggle("open", shouldOpen);
   header.classList.toggle("menu-active", shouldOpen);
   document.body.classList.toggle("menu-open", shouldOpen);
+  if (menuOverlay) menuOverlay.classList.toggle("active", shouldOpen);
   menuButton.setAttribute("aria-expanded", String(shouldOpen));
   menuButton.setAttribute("aria-label", shouldOpen ? "Close menu" : "Open menu");
 }
@@ -319,6 +321,7 @@ function setupStaggerChildren() {
 }
 
 menuButton.addEventListener("click", () => toggleMenu());
+if (menuOverlay) menuOverlay.addEventListener("click", () => toggleMenu(false));
 navLinks.forEach((link) => link.addEventListener("click", () => toggleMenu(false)));
 window.addEventListener("scroll", setHeaderState, { passive: true });
 window.addEventListener("scroll", requestScrollMotionUpdate, { passive: true });
