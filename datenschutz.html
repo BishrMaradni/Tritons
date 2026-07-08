@@ -10,12 +10,17 @@
     <link rel="apple-touch-icon" sizes="180x180" href="assets/web/apple-touch-icon.png" />
   </head>
   <body>
-    <!-- TODO: Datenschutzerklärung must be reviewed by the team before going live. Verify all legal details are accurate. -->
-    <header class="legal-header">
-      <a href="index.html" class="brand" aria-label="Munich Tritons Home">
-        <img src="assets/web/logo-graphic.png" alt="" width="40" height="40" />
-      </a>
-      <nav>
+    <header class="site-header legal-header">
+      <div class="brand-group">
+        <a class="brand" href="index.html" aria-label="Munich Tritons Home">
+          <img class="brand-wordmark" src="assets/web/nav-logo.png" alt="" aria-hidden="true" />
+        </a>
+        <span class="brand-spacer"></span>
+        <a class="brand-abteilung" href="https://ftgern.de" target="_blank" rel="noopener" aria-label="FT Gern website">
+          <span>Wasserball-Abteilung der FT Gern</span>
+        </a>
+      </div>
+      <nav class="site-nav" style="position:static;height:auto;width:auto;background:none;padding:0;visibility:visible;opacity:1">
         <a href="index.html">Zurück zur Startseite</a>
       </nav>
     </header>
@@ -27,19 +32,18 @@
 
         <section>
           <h2>1. Verantwortlicher</h2>
-          <!-- ACTION REQUIRED: Replace with actual details -->
           <p>
             Munich Tritons – Wasserballabteilung<br />
-            FT Gern 1907 e.V.<br />
-            [Vereinsadresse]<br />
-            [PLZ] München<br />
+            FT München Gern e.V.<br />
+            Hanebergstraße 1<br />
+            80637 München<br />
             E-Mail: <a href="mailto:info@munichtritons.de">info@munichtritons.de</a>
           </p>
         </section>
 
         <section>
           <h2>2. Hosting</h2>
-          <p>Diese Website wird über GitHub Pages gehostet. Anbieter ist die GitHub Inc., 88 Colin P Kelly Jr St, San Francisco, CA 94107, USA. Beim Aufruf dieser Website erfasst GitHub automatisch Informationen in sogenannten Server-Logfiles, die Ihr Browser automatisch übermittelt. Dies sind:</p>
+          <p>Diese Website wird über DigitalOcean gehostet. Anbieter ist die DigitalOcean, LLC, 101 Avenue of the Americas, 10th Floor, New York, NY 10013, USA. Beim Aufruf dieser Website erfasst der Server automatisch Informationen in sogenannten Server-Logfiles, die Ihr Browser automatisch übermittelt. Dies sind:</p>
           <ul>
             <li>IP-Adresse des anfragenden Rechners</li>
             <li>Datum und Uhrzeit der Anfrage</li>
@@ -47,7 +51,7 @@
             <li>Verwendeter Browser und Betriebssystem</li>
             <li>Referrer-URL</li>
           </ul>
-          <p>Die Datenverarbeitung erfolgt gemäß Art. 6 Abs. 1 lit. f DSGVO auf Basis des berechtigten Interesses an der technischen Bereitstellung der Website. Weitere Informationen finden Sie in der <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">Datenschutzerklärung von GitHub</a>.</p>
+          <p>Die Datenverarbeitung erfolgt gemäß Art. 6 Abs. 1 lit. f DSGVO auf Basis des berechtigten Interesses an der technischen Bereitstellung der Website. Weitere Informationen finden Sie in der <a href="https://www.digitalocean.com/legal/privacy-policy" target="_blank" rel="noopener">Datenschutzerklärung von DigitalOcean</a>.</p>
         </section>
 
         <section>
@@ -59,7 +63,7 @@
 
         <section>
           <h2>4. Lokale Speicherung</h2>
-          <p>Diese Website verwendet kein localStorage und keine Cookies. Es werden keine Präferenzen lokal gespeichert.</p>
+          <p>Diese Website verwendet localStorage ausschließlich zur Speicherung Ihrer Sprachpräferenz (Deutsch/Englisch). Es werden keine Cookies eingesetzt und keine personenbezogenen Daten lokal gespeichert.</p>
         </section>
 
         <section>

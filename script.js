@@ -42,7 +42,14 @@ var translations = {
     "training.matches.value": "To be decided",
     "gallery.eyebrow": "In Action",
     "gallery.heading": "Life in the Pool",
-    "gallery.subtitle": "From training sessions to tournament matchdays - water polo as we live it.",
+    "gallery.subtitle": "From training sessions to tournament days — water polo as we live it.",
+    "gallery.cap1": "Matchday energy",
+    "gallery.cap2": "Training intensity",
+    "gallery.cap3": "Pool sessions",
+    "gallery.cap4": "Team spirit",
+    "gallery.cap5": "Water polo in Munich",
+    "gallery.cta.text": "Want to be in the pool with us?",
+    "gallery.cta.btn": "Join the Team",
     "faq.eyebrow": "FAQ",
     "faq.heading": "Common Questions",
     "faq.q1": "Do I need water polo experience to join?",
@@ -66,7 +73,9 @@ var translations = {
     "form.label.message": "Message (optional)",
     "form.submit": "Send Message",
     "form.fallback": 'Prefer email? Write us at <a href="mailto:munich.tritons@gmail.com">munich.tritons@gmail.com</a>',
-    "footer.sub": "Water Polo at FT Gern",
+    "gallery.alt6": "Water polo ball and goggles on the pool edge before training",
+    "gallery.alt7": "Munich Tritons team photo after a tournament",
+    "footer.sub": "Water Polo at the FT Gern",
     "nav.abteilung": "Water Polo Division of FT Gern",
     "footer.about": "About",
     "footer.training": "Training",
@@ -118,9 +127,16 @@ var translations = {
     "training.schedule.note": "Do 19:00 – 20:30 bald verfügbar",
     "training.matches.label": "Spiele & Liga",
     "training.matches.value": "Wird noch bekanntgegeben",
-    "gallery.eyebrow": "In Aktion",
-    "gallery.heading": "Leben im Becken",
-    "gallery.subtitle": "Von Trainingseinheiten bis zu Turniertagen - Wasserball, wie wir ihn leben.",
+    "gallery.eyebrow": "Im Wasser",
+    "gallery.heading": "So fühlt sich Wasserball an",
+    "gallery.subtitle": "Von Trainingseinheiten bis zu Turniertagen — Wasserball, wie wir ihn leben.",
+    "gallery.cap1": "Spieltag-Energie",
+    "gallery.cap2": "Training im Wasser",
+    "gallery.cap3": "Am Beckenrand",
+    "gallery.cap4": "Teamgeist",
+    "gallery.cap5": "Wasserball in München",
+    "gallery.cta.text": "Willst du mit uns ins Wasser?",
+    "gallery.cta.btn": "Mittrainieren",
     "faq.eyebrow": "FAQ",
     "faq.heading": "Häufige Fragen",
     "faq.q1": "Brauche ich Wasserball-Erfahrung, um mitzumachen?",
@@ -144,7 +160,9 @@ var translations = {
     "form.label.message": "Nachricht (optional)",
     "form.submit": "Nachricht senden",
     "form.fallback": 'Lieber per E-Mail? Schreib uns an <a href="mailto:munich.tritons@gmail.com">munich.tritons@gmail.com</a>',
-    "footer.sub": "Wasserball bei FT Gern",
+    "gallery.alt6": "Wasserball und Schwimmbrille am Beckenrand vor dem Training",
+    "gallery.alt7": "Munich Tritons Teamfoto nach einem Turnier",
+    "footer.sub": "Wasserball bei der FT Gern",
     "nav.abteilung": "Wasserball-Abteilung der FT Gern",
     "footer.about": "Über uns",
     "footer.training": "Training",
@@ -438,7 +456,7 @@ function setupLightbox() {
     lb.setAttribute("aria-hidden", "true");
   }
 
-  document.querySelectorAll(".gallery-item img, .about-image-wrap img").forEach(function(img) {
+  document.querySelectorAll(".gallery-card img, .about-image-wrap img").forEach(function(img) {
     img.addEventListener("click", function() { showImage(img.src, img.alt); });
   });
 
